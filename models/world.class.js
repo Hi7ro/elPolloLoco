@@ -6,6 +6,15 @@ class World {
     new Chicken(),
     new Chicken(),
   ];
+  clouds = [
+    new Cloud(),
+  ];
+  floor = [
+    new Floor(),
+  ];
+
+
+
   canvas;
   ctx;
 
@@ -19,15 +28,23 @@ class World {
 
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
+    //? Characters
     this.ctx.drawImage(this.character.img, this.character.x, this.character.y, this.character.width, this.character.height);
     this.enemies.forEach(enemy => {
       this.ctx.drawImage(enemy.img, enemy.x, enemy.y, enemy.width, enemy.height);
     });
+    //? Clouds
+    this.clouds.forEach(cloud => {
+      this.ctx.drawImage(cloud.img, cloud.x, cloud.y, cloud.width, cloud.height);
+    });
+    //? Floor
+    this.floor.forEach(floor => {
+      this.ctx.drawImage(floor.img, floor.x, floor.y, floor.width, floor.height);
+    })
 
 
     let self = this;
-    requestAnimationFrame(function(){
+    requestAnimationFrame(function () {
       self.draw()
     });
   }
